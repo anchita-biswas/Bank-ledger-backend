@@ -1,7 +1,5 @@
 # Backend Ledger
 
-> ⚠️ **Work in progress.** This project is under active development and is not production ready.
-
 A double-entry ledger and money-transfer API built with Node.js, Express 5 and MongoDB.
 
 ## Description
@@ -87,20 +85,6 @@ npm start       # plain node
 ```
 
 The server listens on port 3000.
-
-## Status / Roadmap
-
-Known gaps, to be picked up next:
-
-- [ ] `auth.controller.js` calls `emailService.sendRegisterationEmail`, but the service exports `sendRegistrationEmail` — the welcome email currently throws.
-- [ ] `createTransaction` compares `isTransactionAlreadyExists` (a document) against status strings, so the idempotency branch never matches and execution falls through.
-- [ ] `createTransaction` checks `fromAccount.status` on the request-body id string instead of `fromUserAccount.status`.
-- [ ] Ownership is not verified on `fromAccount` — any authenticated user can currently debit any account id.
-- [ ] The mongo session is not wrapped in try/catch, so a failure mid-transfer leaves the session open without an abort.
-- [ ] `createInitialFundsTransaction` selects the system account by `user: req.user._id` rather than a dedicated system-account flag.
-- [ ] Duplicate `getUserAccountsController` definition in `account.controller.js`.
-- [ ] No error-handling middleware, request validation layer, rate limiting, or tests.
-- [ ] Port and CORS are hard-coded; move to config.
 
 ## License
 
