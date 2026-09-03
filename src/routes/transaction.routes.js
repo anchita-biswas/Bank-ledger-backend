@@ -15,8 +15,18 @@ transactionRoutes.post(
 );
 
 /**
- * - POST / api/ transaction
- * - Create initial funds transaction for system user
+ * - GET /api/transactions/
+ * - Transaction history for the logged-in user
+ */
+transactionRoutes.get(
+  "/",
+  authMiddleware.authMiddleware,
+  transactionController.getUserTransactions,
+);
+
+/**
+ * - POST /api/transactions/system/initial-funds
+ * - Create initial funds transaction from the system account
  */
 transactionRoutes.post(
   "/system/initial-funds",
